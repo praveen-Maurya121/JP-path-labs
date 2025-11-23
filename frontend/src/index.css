@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-surface {
+  @apply bg-white dark:bg-gray-800;
+}
+
+.text-surface {
+  @apply text-gray-900 dark:text-gray-100;
+}
+
+.shadow-soft {
+  @apply shadow-lg dark:shadow-gray-900/20;
+}
+
