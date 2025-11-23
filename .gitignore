@@ -45,3 +45,9 @@ yarn-error.log*
 tmp/
 temp/
 .cache/
+
+# Keys and certificates
+keys/
+*.pem
+*.key
+*.crt
