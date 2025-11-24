@@ -39,6 +39,10 @@ const corsOptions = {
     // Production: only allow specific origins
     const allowedOrigins = [
       process.env.FRONTEND_URL,
+      'https://jppathlabs.in',
+      'http://jppathlabs.in',
+      'https://www.jppathlabs.in',
+      'http://www.jppathlabs.in',
       'http://localhost:5173',
       'http://127.0.0.1:5173',
     ].filter(Boolean);
@@ -124,6 +128,7 @@ app.use((req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`🌐 CORS enabled for: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
+  console.log(`🌐 Production domains: https://jppathlabs.in, http://jppathlabs.in`);
   console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`\n💡 Test server: http://localhost:${PORT}/api/health\n`);
   

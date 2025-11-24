@@ -4,7 +4,7 @@ import axios from 'axios';
  * API Base URL Configuration
  * 
  * Development: Uses Vite proxy - /api requests are proxied to http://localhost:5001
- * Production: Uses relative URL - /api requests are proxied by Nginx to backend server
+ * Production: Uses full domain URL - https://jppathlabs.in/api
  * 
  * You can override with VITE_API_URL environment variable for custom deployments
  */
@@ -19,9 +19,22 @@ const getBaseURL = () => {
       : `${customApiUrl.replace(/\/$/, '')}/api`;
   }
   
-  // Default: Use relative URL (works with Vite proxy in dev, Nginx proxy in production)
-  // In development: Vite's proxy will forward /api -> http://localhost:5001
-  // In production: Nginx will forward /api -> backend server (e.g., http://localhost:5001)
+  // Production: Use full domain URL
+  if (import.meta.env.PROD) {
+    // Use HTTPS in production (fallback to HTTP if needed)
+    const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+    const hostname = window.location.hostname;
+    
+    // If on jppathlabs.in domain, use it
+    if (hostname.includes('jppathlabs.in')) {
+      return `${protocol}//${hostname}/api`;
+    }
+    
+    // Otherwise use current hostname (for other deployments)
+    return `${protocol}//${hostname}/api`;
+  }
+  
+  // Development: Use relative URL (Vite proxy will forward /api -> http://localhost:5001)
   return '/api';
 };
 
