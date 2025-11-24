@@ -9,7 +9,7 @@ package-lock.json
 .env.development
 
 # Build outputs
-dist/
+
 build/
 *.log
 
